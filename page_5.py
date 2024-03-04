@@ -90,7 +90,7 @@ def run_page5():
                 st.metric(label=stage_name, value=f"{int(value)}")
 
     # Display the metrics for both funnels
-    display_funnel_metrics(col1, funnel_dict['state_business_resources'], '1.1 State Resources')
+    display_funnel_metrics(col1, funnel_dict['state_business_resources'], '1.1 Government Resources')
     display_funnel_metrics(col2, funnel_dict['outside_organizations'], '1.2 Outside Organizations')
 
 
