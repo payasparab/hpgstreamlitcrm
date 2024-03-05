@@ -46,6 +46,12 @@ if not check_password():
 
 # Main Streamlit app starts here
 
+st.set_page_config(
+        page_title="HPG CRM Demo",
+        page_icon="hpg_logo.png",
+        layout="wide",
+    )
+
 # Data Load
 
 # Navigation for App
