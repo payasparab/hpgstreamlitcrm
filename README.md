@@ -1,44 +1,75 @@
-main_app.py
-This file serves as the main entry point for the Streamlit application. It initializes the app with a title, sets up navigation via the sidebar radio buttons, and includes functions from the other pages (page_2.py, page_3.py, etc.) to run based on user navigation. The page includes a section for downloading the call log CSV file and offers different views and filters for the data based on county, zip code, NAICS code, and industry tag.
+# Streamlit CRM App App Overview
+# By the Handy Point Group (www.handypointgroup.com)
 
-Key Streamlit Components Used:
+## Overview
+This Streamlit application is structured across multiple pages, each with a specific functionality. Here is a detailed breakdown of what each page does, along with the Streamlit components they use.
 
-st.set_page_config to set up the app’s page configuration including the title and layout.
-st.sidebar.radio for navigation between the different app sections.
-st.title to display the app’s title.
-st.download_button to provide a downloadable CSV file of the sales log.
-st.selectbox and st.multiselect to allow users to filter data by various fields.
-page_2.py
-This page is designed for mapping geolocation data. It reads geocode information and original data from CSV files and merges them to create maps based on various filtering criteria like all calls, high-value calls, sales, and industry-specific calls.
+### `main_app.py`
+The main entry point of the application. It sets up the page configuration and sidebar navigation to access various sections of the app.
 
-Key Streamlit Components Used:
+#### Functionality:
+- Initialize the app with a title.
+- Set up sidebar navigation using radio buttons.
+- Incorporate functions from other pages based on user navigation.
+- Allow users to download a call log CSV file.
+- Offer different data views and filters.
 
-st.selectbox for selecting the type of map visualization.
-st.map for displaying geographical data on a map.
-st.subheader to display sub-headers for each map type.
-page_3.py
-The purpose of this page is to display a sales team report by industry. It generates bar charts to visualize calls completed and sales converted by industry.
+#### Streamlit Components:
+- `st.set_page_config`
+- `st.sidebar.radio`
+- `st.title`
+- `st.download_button`
+- `st.selectbox`
+- `st.multiselect`
 
-Key Streamlit Components Used:
+### `page_2.py`
+Handles mapping of geolocation data from CSV files and displays maps based on different filters.
 
-st.pyplot to display matplotlib plots within the Streamlit app.
-st.columns to create a two-column layout for displaying metrics side by side.
-st.metric to display key statistics.
-page_4.py
-This page allows users to interact with call logs. It provides functionality to filter call logs by county, industry, and call disposition, and to download the filtered call logs as a CSV file.
+#### Functionality:
+- Read geocode and original data.
+- Merge data to create maps for various call types.
 
-Key Streamlit Components Used:
+#### Streamlit Components:
+- `st.selectbox`
+- `st.map`
+- `st.subheader`
 
-st.download_button to download a portion of the call log as a CSV file.
-st.selectbox to select specific filters for displaying the call logs.
-st.dataframe to display data in a tabular format.
-page_5.py
-The final page provides a dashboard for referrals and lead list exporting. It processes data to count connections with state business resources and outside organizations, displays this data in a table format, and allows users to export filtered call data.
+### `page_3.py`
+Displays a sales team report by industry using bar charts for calls and sales.
 
-Key Streamlit Components Used:
+#### Functionality:
+- Generate bar charts to visualize call and sales data.
 
-st.header and st.subheader to organize content in a hierarchical manner.
-st.dataframe for displaying data in a table format.
-Custom functions to download specific subsets of data as CSV files.
-st.columns for side-by-side layout of referral summaries.
-These components are used to build an interactive, user-friendly interface for exploring call log data and are a part of Streamlit’s API to make building data applications easier. For more details on Streamlit components and their usage, you can refer to the Streamlit API Reference.
+#### Streamlit Components:
+- `st.pyplot`
+- `st.columns`
+- `st.metric`
+
+### `page_4.py`
+Allows interaction with call logs, including filtering and downloading of call data.
+
+#### Functionality:
+- Filter call logs by various criteria.
+- Download filtered call logs as CSV.
+
+#### Streamlit Components:
+- `st.download_button`
+- `st.selectbox`
+- `st.dataframe`
+
+### `page_5.py`
+Provides a dashboard for referrals and exporting of lead lists.
+
+#### Functionality:
+- Count connections with resources.
+- Display and export filtered call data.
+
+#### Streamlit Components:
+- `st.header`
+- `st.subheader`
+- `st.dataframe`
+- Custom functions to handle data exporting.
+- `st.columns`
+
+## Notes
+Each page uses specific Streamlit components to facilitate the creation of an interactive and user-friendly interface for data exploration. For more detailed information on the components and their usage, refer to the [Streamlit API Reference](https://docs.streamlit.io/library/api-reference).
