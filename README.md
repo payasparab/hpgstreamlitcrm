@@ -1,6 +1,6 @@
 # Streamlit CRM App App Overview
 
-### By the [Handy Point Group](www.handypointgroup.com)
+By the [Handy Point Group](www.handypointgroup.com)
 
 ## Overview
 This Streamlit application is structured across multiple pages, each with a specific functionality. Here is a detailed breakdown of what each page does, along with the Streamlit components they use.
