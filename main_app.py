@@ -57,6 +57,9 @@ def check_email():
 
     # Input for email with a submit button
     st.text_input("Email Address", key="email_address")
+
+    st.text_input("Phone Number", key="phone_number")
+    
     submit_button = st.button("Submit", on_click=email_submitted)
 
     # Error message if email is not valid
@@ -73,10 +76,11 @@ def send_lead_email(name, email):
     """Sends an email with the lead information using SendGrid."""
     sg = sendgrid.SendGridAPIClient(api_key=sg_api_key)
     from_email = Email("payas@handypointgroup.com")  # The email address it is sent from (update with your email).
-    to_email = To("payas@handypointgroup.com")  # The destination email address.
+    to_email = To("partners@handypointgroup.com")  # The destination email address.
     submit_time = datetime.now()
     subject = "New Lead from Streamlit App CRM Demo"
-    content = Content("text/plain", f"Name: {name}\nEmail: {email}\nTime:{submit_time}")
+    formatted_submit_time = submit_time.strftime("%m/%d/%Y %I:%M %p %Z")
+    content = Content("text/plain", f"Name: {name}\nEmail: {email}\nPhone Number: {st.session_state['phone_number']}\nTime: {formatted_submit_time}")
     mail = Mail(from_email, to_email, subject, content)
 
     # Send the email.
