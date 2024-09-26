@@ -51,16 +51,80 @@ def check_email():
     # Check if the email is already validated
     if st.session_state.get("email_valid"):
         return True
+    
+    st.title("Welcome to HPG's Streamlit CRM Demo")
+
+    st.markdown("""
+    Track your outreach efforts, visualize key data insights, and manage business relationships in real time. Our user-friendly CRM tool allows organizations to monitor business liaison activity, analyze labor market data, and download custom reports, all through an intuitive interface.
+    """)
+    st.divider()
+
+       
 
     # Input for name
     st.text_input("Name", key="name_submitted")
 
+    # Guidance for email and phone number
+    st.markdown("Please enter a valid email address. Phone number is optional.")
+
     # Input for email with a submit button
     st.text_input("Email Address", key="email_address")
 
-    st.text_input("Phone Number", key="phone_number")
+    # Input for phone number
+    st.text_input("Phone Number (Optional)", key="phone_number")
+
+    # Optional fields for company
+    st.text_input("Company (Optional)", key="company_name")
     
     submit_button = st.button("Submit", on_click=email_submitted)
+
+    st.divider()
+    
+    st.markdown("""
+            # HPG CRM Demo Guide
+
+            ## Overview
+            Welcome to HPG's Streamlit CRM Demo! This application helps organizations track outreach efforts, visualize key data insights, and manage business relationships in real time. Below is a guide to the various tabs and their functionalities.
+
+            ## Tabs and Functionalities
+
+            ### Summary Tables
+            - **Description**: Provides an interactive database for Business Development Managers.
+            - **Features**:
+            - Download the full sales log as a CSV file.
+            - View calls by different groupings (County, Zip Code, NAICS Code, Industry Tag).
+            - Apply additional filters (Zip Code, County, NAICS Code, Industry Tag).
+            - Display a summary table with calls, sales, and high-value sales.
+            - Download the current summary table.
+
+            ### Map
+            - **Description**: Handles mapping of geolocation data from CSV files and displays maps based on different filters.
+            - **Features**:
+            - Display maps for all calls, high-value sales, sales, and calls by industry.
+            - Filter data by industry.
+
+            ### Cumulative Report
+            - **Description**: Displays a sales team report by industry using bar charts for calls and sales.
+            - **Features**:
+            - Generate bar charts to visualize call and sales data.
+            - Display metrics for calls completed and sales converted.
+
+            ### Contact Sheets
+            - **Description**: Allows interaction with call logs, including filtering and downloading of call data.
+            - **Features**:
+            - Filter call logs by various criteria.
+            - Download filtered call logs as CSV.
+
+            ### Connections Tracker
+            - **Description**: Provides a dashboard for referrals and exporting of lead lists.
+            - **Features**:
+            - Count connections with resources.
+            - Display and export filtered call data.
+            - Export call data with government and outside organization referrals.
+
+        """)
+
+
 
     # Error message if email is not valid
     if st.session_state.get("email_valid") == False:
@@ -76,20 +140,22 @@ def send_lead_email(name, email):
     """Sends an email with the lead information using SendGrid."""
     sg = sendgrid.SendGridAPIClient(api_key=sg_api_key)
     from_email = Email("payas@handypointgroup.com")  # The email address it is sent from (update with your email).
-    to_email = To("partners@handypointgroup.com")  # The destination email address.
+    to_email = To("payas@handypointgroup.com")  # The destination email address.
     submit_time = datetime.now()
     subject = "New Lead from Streamlit App CRM Demo"
     formatted_submit_time = submit_time.strftime("%m/%d/%Y %I:%M %p %Z")
-    content = Content("text/plain", f"Name: {name}\nEmail: {email}\nPhone Number: {st.session_state['phone_number']}\nTime: {formatted_submit_time}")
+    content = Content("text/plain", f"Name: {name}\nEmail: {email}\nPhone Number: {st.session_state['phone_number']}\nCompany: {st.session_state['company_name']}\nTime: {formatted_submit_time}")
     mail = Mail(from_email, to_email, subject, content)
 
     # Send the email.
+    '''
+    Only needed for testing - TO DELETE
     response = sg.client.mail.send.post(request_body=mail.get())
     if response.status_code != 202:
         st.error("Failed to send email.")
     else:
         st.success("Lead sent successfully!")
-
+    '''
 
 # Rest of the streamlit code
 if check_email():
