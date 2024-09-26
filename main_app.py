@@ -47,6 +47,7 @@ def check_email():
             # Email is not valid
             st.session_state["email_valid"] = False
             st.error(f"Invalid email address: {e}")
+            st.warning("Please enter a valid email address to proceed.")
 
     # Check if the email is already validated
     if st.session_state.get("email_valid"):
@@ -140,7 +141,7 @@ def send_lead_email(name, email):
     """Sends an email with the lead information using SendGrid."""
     sg = sendgrid.SendGridAPIClient(api_key=sg_api_key)
     from_email = Email("payas@handypointgroup.com")  # The email address it is sent from (update with your email).
-    to_email = To("partners@handypointgroup.com")  # The destination email address.
+    to_email = To("payas@handypointgroup.com")  # The destination email address.
     submit_time = datetime.now()
     subject = "New Lead from Streamlit App CRM Demo"
     formatted_submit_time = submit_time.strftime("%m/%d/%Y %I:%M %p %Z")
@@ -163,6 +164,51 @@ if check_email():
 
     st.sidebar.title('Navigation')
     selection = st.sidebar.radio("Go to", ['Summary Tables', 'Map', 'Cumulative Report', 'Contact Sheets', 'Connections Tracker'])
+
+    
+    st.sidebar.markdown("""
+        This application helps organizations track outreach efforts, visualize key data insights, and manage business relationships in real time. Below is a guide to the various tabs and their functionalities.
+    """)
+    st.sidebar.markdown("**Explanations for Each Tab**")
+    with st.sidebar.expander("Summary Tables"):
+        st.markdown("""
+            - **Description**: Provides an interactive database for Business Development Managers.
+            - **Features**:
+                - Download the full sales log as a CSV file.
+                - View calls by different groupings (County, Zip Code, NAICS Code, Industry Tag).
+                - Apply additional filters (Zip Code, County, NAICS Code, Industry Tag).
+                - Display a summary table with calls, sales, and high-value sales.
+                - Download the current summary table.
+        """)
+    with st.sidebar.expander("Map"):
+        st.markdown("""
+            - **Description**: Handles mapping of geolocation data from CSV files and displays maps based on different filters.
+            - **Features**:
+                - Display maps for all calls, high-value sales, sales, and calls by industry.
+                - Filter data by industry.
+        """)
+    with st.sidebar.expander("Cumulative Report"):
+        st.markdown("""
+            - **Description**: Displays a sales team report by industry using bar charts for calls and sales.
+            - **Features**:
+                - Generate bar charts to visualize call and sales data.
+                - Display metrics for calls completed and sales converted.
+        """)
+    with st.sidebar.expander("Contact Sheets"):
+        st.markdown("""
+            - **Description**: Allows interaction with call logs, including filtering and downloading of call data.
+            - **Features**:
+                - Filter call logs by various criteria.
+                - Download filtered call logs as CSV.
+        """)
+    with st.sidebar.expander("Connections Tracker"):
+        st.markdown("""
+            - **Description**: Provides a dashboard for referrals and exporting of lead lists.
+            - **Features**:
+                - Count connections with resources.
+                - Display and export filtered call data.
+                - Export call data with government and outside organization referrals.
+        """)
 
     og_data = pd.read_csv('call_log.csv')
     og_data['interview'] = og_data['call_disposition'].apply(
