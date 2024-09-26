@@ -144,7 +144,7 @@ def send_lead_email(name, email):
     """Sends an email with the lead information using SendGrid."""
     sg = sendgrid.SendGridAPIClient(api_key=sg_api_key)
     from_email = Email("payas@handypointgroup.com")  # The email address it is sent from (update with your email).
-    to_email = To("payas@handypointgroup.com")  # The destination email address.
+    to_email = To("partners@handypointgroup.com")  # The destination email address.
     submit_time = datetime.now()
     subject = "New Lead from Streamlit App CRM Demo"
     formatted_submit_time = submit_time.strftime("%m/%d/%Y %I:%M %p %Z")
