@@ -153,6 +153,12 @@ def send_lead_email(name, email):
     content = Content("text/plain", f"Name: {name}\nEmail: {email}\nPhone Number: {st.session_state['phone_number']}\nCompany: {st.session_state['company_name']}\nTime: {formatted_submit_time}")
     mail = Mail(from_email, to_email, subject, content)
 
+    try:
+        response = sg.client.mail.send.post(request_body=mail.get())
+        st.log.info("Email sent successfully.")
+    except Exception as e:
+        st.log.error(f"Failed to send email: {e}")
+
 # Rest of the streamlit code
 if check_email():
         # Navigation for App
