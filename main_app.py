@@ -60,6 +60,8 @@ def check_email():
 
     st.markdown("""
     Track your outreach efforts, visualize key data insights, and manage business relationships in real time. Our user-friendly CRM tool allows organizations to monitor business liaison activity, analyze labor market data, and download custom reports, all through an intuitive interface.
+    
+    Please fill out the form below to access the demo.            
     """)
     st.divider()
 
