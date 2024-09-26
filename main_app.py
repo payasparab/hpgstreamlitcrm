@@ -13,7 +13,10 @@ import base64
 from io import BytesIO
 import re
 import streamlit as st
-from credentials import sg_api_key
+try:
+    from credentials import sg_api_key
+except ImportError:
+    sg_api_key = st.secrets["sg_api_key"]
 from email_validator import validate_email, EmailNotValidError
 import sendgrid
 from sendgrid.helpers.mail import Mail, Email, To, Content
