@@ -153,16 +153,6 @@ def send_lead_email(name, email):
     content = Content("text/plain", f"Name: {name}\nEmail: {email}\nPhone Number: {st.session_state['phone_number']}\nCompany: {st.session_state['company_name']}\nTime: {formatted_submit_time}")
     mail = Mail(from_email, to_email, subject, content)
 
-    # Send the email.
-    '''
-    Only needed for testing - TO DELETE
-    response = sg.client.mail.send.post(request_body=mail.get())
-    if response.status_code != 202:
-        st.error("Failed to send email.")
-    else:
-        st.success("Lead sent successfully!")
-    '''
-
 # Rest of the streamlit code
 if check_email():
         # Navigation for App
