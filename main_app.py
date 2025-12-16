@@ -44,7 +44,7 @@ def check_email():
             st.success("Email is valid. Access granted.")
             
             # Send lead email
-            send_lead_email(name=st.session_state["name_submitted"], email=email)
+            #send_lead_email(name=st.session_state["name_submitted"], email=email)
 
         except EmailNotValidError as e:
             # Email is not valid
